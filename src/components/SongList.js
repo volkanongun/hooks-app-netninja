@@ -1,5 +1,6 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import uuid from 'uuid/v1'
+import NewSongForm from './NewSongForm'
 
 const SongList = () => {
 
@@ -9,8 +10,8 @@ const SongList = () => {
     { title: 'this wild darkness', id: 3 }
   ])
 
-  const addSong = () => {
-  	setSongs([...songs, {title : "new song", id : 4} ])
+  const addSong = (title) => {
+  	setSongs([...songs, {title : title, id : 4} ])
   }
 
 	return (
@@ -18,6 +19,7 @@ const SongList = () => {
 			<ul>
 				{songs.map(song=> <li key={uuid()}>{song.title}</li>)}
 			</ul>
+			<NewSongForm addSong={addSong}/>
 			<button onClick={addSong}>Add A Song</button>
 		</div>
 	)
